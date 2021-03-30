@@ -13,7 +13,7 @@ public class LauncherActivity extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        mTextView = (TextView) findViewById(R.id.text);
+        mTextView = (TextView) findViewById(R.id.main_text);
 
         // Enables Always-on
         setAmbientEnabled();
