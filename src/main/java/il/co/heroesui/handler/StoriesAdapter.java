@@ -2,6 +2,7 @@ package il.co.heroesui.handler;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.transition.Scene;
 import android.util.Log;
 import android.view.View;
@@ -82,28 +83,16 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("survivor", "רותם שמחה (קאז'ק)");
                         intent.putExtra("story", "kazik");
-                        // TODO Load from shared preferences
-                        intent.putExtra("currentChapter", 0);
-                        intent.putExtra("currentScene", 0);
-                        intent.putExtra("currentLine", 0);
                     }
                     else if (title.getText().toString().contains("חיים")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("survivor", "kazik");
                         intent.putExtra("story", "haim");
-                        // TODO Load from shared preferences
-                        intent.putExtra("currentChapter", 0);
-                        intent.putExtra("currentScene", 0);
-                        intent.putExtra("currentLine", 0);
                     }
                     else if (title.getText().toString().contains("אווה")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("survivor", "kazik");
                         intent.putExtra("story", "eva");
-                        // TODO Load from shared preferences
-                        intent.putExtra("currentChapter", 0);
-                        intent.putExtra("currentScene", 0);
-                        intent.putExtra("currentLine", 0);
                     } else {
                         Log.wtf(TAG, "This shouldn't happen!");
                         return;

@@ -3,6 +3,7 @@ package il.co.heroesui;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -38,6 +39,7 @@ public class SceneActivity extends AppCompatActivity {
     private String[] currentSceneLines;
     private Boolean inScene;
     private String storyFilename;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +54,16 @@ public class SceneActivity extends AppCompatActivity {
         bOption3 = (Button) findViewById(R.id.choice_option_3);
         inScene = true;
 
+        /* Load shared prefs */
+        pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
+
         /* Load intent */
         Intent intent = getIntent();
         mTextView.setText(intent.getExtras().getString("survivor"));
         Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
         // TODO Load game
-        currentChapter = intent.getIntExtra("currentChapter", 0);
-        currentScene = intent.getIntExtra("currentScene", 0);
+        currentChapter = intent.getIntExtra("currentChapter", pref.getInt("currentChapter", 0));
+        currentScene = intent.getIntExtra("currentScene", pref.getInt("currentScene", 0));
         currentLine = intent.getIntExtra("currentLine", 0);
         storyFilename = intent.getStringExtra("story");
 
@@ -114,7 +119,7 @@ public class SceneActivity extends AppCompatActivity {
     }
 
     private void updateSceneLines(int choice_option) throws JSONException {
-        currentSceneLines = Objects.requireNonNull(getCurrentScene()).getJSONArray("effects").optString(choice_option, "").split(LINE_SPLIT_REGEX);
+        currentSceneLines = Objects.requireNonNull(getCurrentScene()).getJSONArray("effects").optString(choice_option - 1, "").split(LINE_SPLIT_REGEX);
         lastLine = currentSceneLines.length - 1;
     }
 
@@ -166,6 +171,7 @@ public class SceneActivity extends AppCompatActivity {
     // Transitions to the following line from the story
     protected void gotoFollowingLine() {
         // TODO Save game
+        SharedPreferences.Editor editor;
         try { // TODO Use (de)serializable class and storyJSON = ex_storyJSON.getClass(...)
             JSONObject scene;
             String firstOption;
@@ -222,7 +228,7 @@ public class SceneActivity extends AppCompatActivity {
             }
             // Move to effect (reaction / consequence)
             scene = getCurrentScene();
-            effect = scene.getJSONArray("effects").optString(choice_option, "");
+            effect = scene.getJSONArray("effects").optString(choice_option - 1, "");
             if (effect.isEmpty()) {
                 // There are no choices, go straight to next line
                 gotoFollowingLine();
@@ -234,24 +240,32 @@ public class SceneActivity extends AppCompatActivity {
         }
     }
 
-    protected void startNextScene() throws JSONException {
-        currentScene++;
-        currentLine = 0;
-        updateSceneLines();
-        showNarration(getCurrentLine());
-        inScene = true;
-    }
-
     protected void startChoice(int choice_option) throws JSONException {
         updateSceneLines(choice_option);
         currentLine = 0;
         showNarration(getCurrentLine());
     }
 
+    protected void startNextScene() throws JSONException {
+        SharedPreferences.Editor editor;
+        editor = pref.edit();
+        editor.putInt("currentScene", ++currentScene);
+        editor.apply();
+        currentLine = 0;
+        updateSceneLines();
+        showNarration(getCurrentLine());
+        inScene = true;
+    }
+
     protected void startNextChapter() throws JSONException {
+        SharedPreferences.Editor editor;
         Intent intent = new Intent(SceneActivity.this, ChapterActivity.class);
+        editor = pref.edit();
+        editor.putInt("currentChapter", ++currentChapter);
+        editor.putInt("currentScene", 0);
+        editor.apply();
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("currentChapter", ++currentChapter);
+        intent.putExtra("currentChapter", currentChapter);
         intent.putExtra("story", storyFilename);
         inScene = true;
         startActivity(intent);

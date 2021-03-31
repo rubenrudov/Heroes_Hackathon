@@ -3,6 +3,7 @@ package il.co.heroesui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,17 +40,18 @@ public class ChapterActivity extends AppCompatActivity {
 
         mChapterTitle.setText(String.format(Locale.getDefault(), "פרק %d", currentChapter + 1));
         bRestartChapter.setText(String.format(Locale.getDefault(), "חזור לתחילת פרק %d", currentChapter));
+        bStartChapter.setText("המשך בסיפור");
 
         bStartChapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", currentChapter);
-                // TODO Save progress to shared preferences
-                scene_intent.putExtra("currentScene", 0);
-                scene_intent.putExtra("currentLine", 0);
+                scene_intent.putExtra("currentScene", pref.getInt("currentScene", 0));
+                scene_intent.putExtra("currentLine", pref.getInt("currentLine", 0));
                 startActivity(scene_intent);
                 // TODO Skip chapter without scenes
             }
@@ -59,6 +61,11 @@ public class ChapterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("currentChapter", 0);
+                editor.putInt("currentScene", 0);
+                editor.commit();
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", 0);
@@ -73,6 +80,11 @@ public class ChapterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("currentChapter", currentChapter - 1);
+                editor.putInt("currentScene", 0);
+                editor.commit();
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", currentChapter - 1);
