@@ -44,6 +44,8 @@ public class SceneActivity extends AppCompatActivity {
         /* Initialization */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scene);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         mTextView = (TextView) findViewById(R.id.main_text);
         bOption1 = (Button) findViewById(R.id.choice_option_1);
         bOption2 = (Button) findViewById(R.id.choice_option_2);
@@ -52,7 +54,8 @@ public class SceneActivity extends AppCompatActivity {
 
         /* Load intent */
         Intent intent = getIntent();
-        Log.d("Story name", Objects.requireNonNull(intent.getExtras().getString("story")));
+        mTextView.setText(intent.getExtras().getString("survivor"));
+        Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
         // TODO Load game
         currentChapter = intent.getIntExtra("currentChapter", 0);
         currentScene = intent.getIntExtra("currentScene", 0);
@@ -271,7 +274,6 @@ public class SceneActivity extends AppCompatActivity {
             bOption3.setVisibility(View.GONE);
         }
     }
-
 
     // Presents a choice of options
     protected void showChoice(

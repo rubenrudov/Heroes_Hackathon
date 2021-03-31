@@ -80,6 +80,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
 
                     if (title.getText().toString().contains("קאז'ק")) {
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("survivor", "רותם שמחה (קאז'ק)");
                         intent.putExtra("story", "kazik");
                         // TODO Load from shared preferences
                         intent.putExtra("currentChapter", 0);
@@ -88,6 +89,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                     }
                     else if (title.getText().toString().contains("חיים")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("survivor", "kazik");
                         intent.putExtra("story", "haim");
                         // TODO Load from shared preferences
                         intent.putExtra("currentChapter", 0);
@@ -96,6 +98,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                     }
                     else if (title.getText().toString().contains("אווה")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("survivor", "kazik");
                         intent.putExtra("story", "eva");
                         // TODO Load from shared preferences
                         intent.putExtra("currentChapter", 0);
