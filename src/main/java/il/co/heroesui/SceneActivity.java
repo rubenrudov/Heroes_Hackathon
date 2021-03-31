@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import static il.co.heroesui.utils.JSONUtils.loadJSONFromStream;
+
 
 public class SceneActivity extends AppCompatActivity {
     public static final String TAG = "SCENE_VIEW";
@@ -56,6 +58,9 @@ public class SceneActivity extends AppCompatActivity {
 
         /* Load shared prefs */
         pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
+        if (pref.getBoolean("completed", false)) {
+            startEpilogue();
+        }
 
         /* Load intent */
         Intent intent = getIntent();
@@ -81,7 +86,6 @@ public class SceneActivity extends AppCompatActivity {
         catch(Exception e) {
             Log.e(TAG, e.toString());
             finish();
-            // TODO startActivity(...);
         }
 
         mTextView.setOnClickListener(new View.OnClickListener() {
@@ -121,20 +125,6 @@ public class SceneActivity extends AppCompatActivity {
     private void updateSceneLines(int choice_option) throws JSONException {
         currentSceneLines = Objects.requireNonNull(getCurrentScene()).getJSONArray("effects").optString(choice_option - 1, "").split(LINE_SPLIT_REGEX);
         lastLine = currentSceneLines.length - 1;
-    }
-
-    private String loadJSONFromStream(InputStream is) {
-        String json = "";
-        try {
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);  // TODO Fix this warning, maybe write something that makes more sense
-            json = new String(buffer, StandardCharsets.UTF_8);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 
     // Returns the information on the current scene from the story
@@ -196,7 +186,10 @@ public class SceneActivity extends AppCompatActivity {
                     if (lastScene <= currentScene) {
                         if (lastChapter <= currentChapter) {
                             // Move to epilogue
-                            finish();  // TODO
+                            editor = pref.edit();
+                            editor.putBoolean("completed", true);
+                            editor.apply();
+                            startEpilogue();
                         } else {
                             // Move to next chapter
                             startNextChapter();
@@ -268,6 +261,13 @@ public class SceneActivity extends AppCompatActivity {
         intent.putExtra("currentChapter", currentChapter);
         intent.putExtra("story", storyFilename);
         inScene = true;
+        startActivity(intent);
+    }
+
+    protected void startEpilogue() {
+        Intent intent = new Intent(SceneActivity.this, EndingStoryActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("story", storyFilename);
         startActivity(intent);
     }
 

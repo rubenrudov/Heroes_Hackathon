@@ -6,6 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".EndingStoryActivity">
 
-    
+
+    <TextView
+        android:id="@+id/survivor_name_static"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survivor_name_placeholder_text"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/full_survivor_info_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/full_survivor_info_link_text"
+                android:textAlignment="center" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <ImageView
+                android:id="@+id/survivor_epilogue_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="58dp"
+                android:contentDescription="@string/survivor_epilogue_image_content_description"
+                app:srcCompat="@drawable/ourlogo" />
+
+            <TextView
+                android:id="@+id/survivor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/survivor_name_placeholder_text"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/short_survivor_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/short_survivor_info_placeholder_text" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

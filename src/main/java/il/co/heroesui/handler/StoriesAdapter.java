@@ -78,21 +78,24 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     final Intent intent;
+                    String storyFilename;
 
-                    if (title.getText().toString().contains("קאז'ק")) {
+                    if (title.getText().toString().contains("חיים")){
+                        storyFilename = "haim";
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
-                        intent.putExtra("survivor", "רותם שמחה (קאז'ק)");
-                        intent.putExtra("story", "kazik");
-                    }
-                    else if (title.getText().toString().contains("חיים")){
-                        intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
-                        intent.putExtra("survivor", "kazik");
-                        intent.putExtra("story", "haim");
+                        intent.putExtra("survivor", "חיים ביזדרובסקי");
+                        intent.putExtra("story", storyFilename);
                     }
                     else if (title.getText().toString().contains("אווה")){
+                        storyFilename = "eva";
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
-                        intent.putExtra("survivor", "kazik");
-                        intent.putExtra("story", "eva");
+                        intent.putExtra("survivor", "אווה לביא");
+                        intent.putExtra("story", storyFilename);
+                    } else if (title.getText().toString().contains("קאז'ק")) {
+                        storyFilename = "kazik";
+                        intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("survivor", "רותם שמחה (קאז'ק)");
+                        intent.putExtra("story", storyFilename);
                     } else {
                         Log.wtf(TAG, "This shouldn't happen!");
                         return;

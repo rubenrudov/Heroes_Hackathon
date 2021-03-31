@@ -12,5 +12,9 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="title_activity_chapter">ChapterActivity</string>
+    <string name="full_survivor_info_link_text">לקריאת העדות המלאה</string>
+    <string name="survivor_name_placeholder_text">שם השורד</string>
+    <string name="short_survivor_info_placeholder_text">מידע קצר על השורד</string>
+    <string name="survivor_epilogue_image_content_description">תמונת הגיבור</string>
 
 </resources>
