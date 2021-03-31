@@ -16,12 +16,12 @@ public class ChapterActivity extends AppCompatActivity {
     Button bRestartStory;
     Button bRestartChapter;
 
-    int currentChapter;
+    private int currentChapter;
+    private String storyFilename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO String storyFilename;
-        String storyFilename = "demo.json";
         Intent intent;
 
         /* Initialization */
@@ -35,7 +35,7 @@ public class ChapterActivity extends AppCompatActivity {
         /* Load intent */
         intent = getIntent();
         currentChapter = intent.getIntExtra("currentChapter", 0);
-        // TODO storyFilename = intent.getStringExtra("story");
+        storyFilename = intent.getStringExtra("story");
 
         mChapterTitle.setText(String.format(Locale.getDefault(), "פרק %d", currentChapter + 1));
         bRestartChapter.setText(String.format(Locale.getDefault(), "חזור לתחילת פרק %d", currentChapter));
@@ -45,6 +45,7 @@ public class ChapterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
+                scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", currentChapter);
                 // TODO Save progress to shared preferences
                 scene_intent.putExtra("currentScene", 0);
@@ -59,6 +60,7 @@ public class ChapterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
+                scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", 0);
                 scene_intent.putExtra("currentScene", 0);
                 scene_intent.putExtra("currentLine", 0);
@@ -72,6 +74,7 @@ public class ChapterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
+                scene_intent.putExtra("story", storyFilename);
                 scene_intent.putExtra("currentChapter", currentChapter - 1);
                 scene_intent.putExtra("currentScene", 0);
                 scene_intent.putExtra("currentLine", 0);

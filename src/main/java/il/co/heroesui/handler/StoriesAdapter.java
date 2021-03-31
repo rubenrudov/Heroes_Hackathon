@@ -19,6 +19,7 @@ import il.co.heroesui.SceneActivity;
 import il.co.heroesui.models.Story;
 
 public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHolder> {
+    String TAG = "STORIES_ADAPTER";
 
     private Context context;
     private ArrayList<Story> stories;
@@ -79,7 +80,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
 
                     if (title.getText().toString().contains("קאז'ק")) {
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
-                        intent.putExtra("story", "kazik.json");
+                        intent.putExtra("story", "kazik");
                         // TODO Load from shared preferences
                         intent.putExtra("currentChapter", 0);
                         intent.putExtra("currentScene", 0);
@@ -93,14 +94,16 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                         intent.putExtra("currentScene", 0);
                         intent.putExtra("currentLine", 0);
                     }
-
-                    else {
+                    else if (title.getText().toString().contains("אווה")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
-                        intent.putExtra("story", "eva.json");
+                        intent.putExtra("story", "eva");
                         // TODO Load from shared preferences
                         intent.putExtra("currentChapter", 0);
                         intent.putExtra("currentScene", 0);
                         intent.putExtra("currentLine", 0);
+                    } else {
+                        Log.wtf(TAG, "This shouldn't happen!");
+                        return;
                     }
                     StoriesAdapter.this.context.startActivity(intent);
                 }

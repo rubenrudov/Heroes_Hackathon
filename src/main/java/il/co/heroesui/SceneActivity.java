@@ -37,11 +37,10 @@ public class SceneActivity extends AppCompatActivity {
     private JSONObject storyJSON;
     private String[] currentSceneLines;
     private Boolean inScene;
+    private String storyFilename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String storyFilename;
-
         /* Initialization */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scene);
@@ -250,6 +249,7 @@ public class SceneActivity extends AppCompatActivity {
         Intent intent = new Intent(SceneActivity.this, ChapterActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("currentChapter", ++currentChapter);
+        intent.putExtra("story", storyFilename);
         inScene = true;
         startActivity(intent);
     }
