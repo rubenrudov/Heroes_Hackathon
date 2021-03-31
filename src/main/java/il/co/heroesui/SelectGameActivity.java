@@ -31,7 +31,6 @@ public class SelectGameActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.
         recyclerView.setAdapter(storiesAdapter);
     }
 }

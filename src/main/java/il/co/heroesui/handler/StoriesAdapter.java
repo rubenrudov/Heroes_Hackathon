@@ -1,6 +1,8 @@
 package il.co.heroesui.handler;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.transition.Scene;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,15 @@ import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+
+import il.co.heroesui.SceneActivity;
 import il.co.heroesui.models.Story;
 
 public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<Story> stories;
+    // TODO: Add onClickListener property
 
     public StoriesAdapter(Context context, ArrayList<Story> stories) {
         this.stories = stories;
@@ -25,12 +30,11 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
         // TODO: Duplicate list for filtering feature
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false);
-        view.setOnClickListener(this.onClickProp);
+        // view.setOnClickListener(this.onClickProp);
         // On click listener for the view (Static for now)
         //        view.setOnClickListener(new View.OnClickListener() {
         //            @Override
@@ -59,7 +63,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
         return this.stories.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView theme;
 
@@ -67,6 +71,28 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
             super(itemView);
             this.title = itemView.findViewById(R.id.storyTitle);
             this.theme = itemView.findViewById(R.id.theme);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent intent;
+
+                    if (title.getText().toString().contains("קאז'ק")) {
+                        intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("story", "kazik");
+                    }
+                    else if (title.getText().toString().contains("חיים")){
+                        intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("story", "haim");
+                    }
+
+                    else {
+                        intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
+                        intent.putExtra("story", "eva");
+                    }
+                    StoriesAdapter.this.context.startActivity(intent);
+                }
+            });
         }
     }
 }
