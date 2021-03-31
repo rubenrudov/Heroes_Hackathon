@@ -12,5 +12,7 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="title_activity_chapter">ChapterActivity</string>
+    <string name="text_for_choosing">טקסט לפני בחירה</string>
+    <string name="title_scene">Title</string>
 
 </resources>

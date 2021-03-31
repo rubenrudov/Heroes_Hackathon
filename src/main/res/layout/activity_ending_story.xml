@@ -1,11 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EndingStoryActivity">
+    tools:context=".EndingStoryActivity"
+    android:background="@android:color/white">
 
-    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/heroPicture"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/wellDone"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:background="@android:color/white"
+        android:src="@drawable/welldone"
+        android:paddingHorizontal="40dp"
+        android:layout_below="@id/heroPicture"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/storyContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+
+        android:paddingHorizontal="40dp"
+        android:layout_below="@id/wellDone"
+        android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/linkWiki"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="ערך ויקיפדיה"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:padding="20dp"
+        android:layout_below="@id/storyContent"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/linkEdut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="270dp"
+        android:background="@drawable/rounded_button"
+        android:text="עדות מלאה בכתב"
+        android:layout_below="@id/linkWiki"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:padding="20dp" />
+
+    <Button
+        android:id="@+id/toVideo"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="עדות בוידאו"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:padding="20dp"
+        android:layout_below="@id/linkEdut" />
+    </RelativeLayout>
+
+</ScrollView>
