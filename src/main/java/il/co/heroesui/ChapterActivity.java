@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class ChapterActivity extends AppCompatActivity {
     TextView mChapterTitle;
@@ -13,8 +16,14 @@ public class ChapterActivity extends AppCompatActivity {
     Button bRestartStory;
     Button bRestartChapter;
 
+    int currentChapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO String storyFilename;
+        String storyFilename = "demo.json";
+        Intent intent;
+
         /* Initialization */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
@@ -24,6 +33,51 @@ public class ChapterActivity extends AppCompatActivity {
         bRestartChapter = (Button) findViewById(R.id.restart_previous_chapter_button);
 
         /* Load intent */
-        Intent intent = getIntent();
+        intent = getIntent();
+        currentChapter = intent.getIntExtra("currentChapter", 0);
+        // TODO storyFilename = intent.getStringExtra("story");
+
+        mChapterTitle.setText(String.format(Locale.getDefault(), "פרק %d", currentChapter + 1));
+        bRestartChapter.setText(String.format(Locale.getDefault(), "חזור לתחילת פרק %d", currentChapter));
+
+        bStartChapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                // TODO intent.setFlags(...)
+                scene_intent.putExtra("currentChapter", currentChapter);
+                // TODO Save progress to shared preferences
+                scene_intent.putExtra("currentScene", 0);
+                scene_intent.putExtra("currentLine", 0);
+                startActivity(scene_intent);
+                // TODO Skip chapter without scenes
+            }
+        });
+
+        bRestartStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                // TODO intent.setFlags(...)
+                scene_intent.putExtra("currentChapter", 0);
+                scene_intent.putExtra("currentScene", 0);
+                scene_intent.putExtra("currentLine", 0);
+                startActivity(scene_intent);
+                // TODO Skip chapter without scenes
+            }
+        });
+
+        bRestartChapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                // TODO intent.setFlags(...)
+                scene_intent.putExtra("currentChapter", currentChapter - 1);
+                scene_intent.putExtra("currentScene", 0);
+                scene_intent.putExtra("currentLine", 0);
+                startActivity(scene_intent);
+                // TODO Skip chapter without scenes
+            }
+        });
     }
 }
