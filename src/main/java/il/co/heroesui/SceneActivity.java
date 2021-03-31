@@ -42,10 +42,11 @@ public class SceneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO String storyFilename;
         String storyFilename = "demo.json";
-
         /* Initialization */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scene);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         mTextView = (TextView) findViewById(R.id.main_text);
         bOption1 = (Button) findViewById(R.id.choice_option_1);
         bOption2 = (Button) findViewById(R.id.choice_option_2);
@@ -54,58 +55,59 @@ public class SceneActivity extends AppCompatActivity {
 
         /* Load intent */
         Intent intent = getIntent();
-        Log.d("Story name", Objects.requireNonNull(intent.getExtras().getString("story")));
+        mTextView.setText(intent.getExtras().getString("survivor"));
+        Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
         // TODO Load game
         currentChapter = intent.getIntExtra("currentChapter", 0);
         currentScene = intent.getIntExtra("currentScene", 0);
         currentLine = intent.getIntExtra("currentLine", 0);
         // TODO storyFilename = intent.getStringExtra("story");
 
-//        try {
-//            Log.i(TAG, getFilesDir().getAbsolutePath());
-//            InputStream stream = getApplicationContext().openFileInput(storyFilename); // getResources().openRawResource(getResources().getIdentifier("raw/" + storyFilename, null, this.getPackageName()));
-//            storyJSON = new JSONObject(Objects.requireNonNull(loadJSONFromStream(stream)));
-//            lastChapter = storyJSON.getJSONArray("chapters").length() - 1;
-//            lastScene = Objects.requireNonNull(getCurrentChapter()).getJSONArray("scenes").length() - 1;
-//            stream.close();
-//            updateSceneLines();
-//            showNarration(getCurrentLine());
-//        }
-//        catch(Exception e) {
-//            Log.e(TAG, e.toString());
-//            finish();
-//            // TODO startActivity(...);
-//        }
-//
-//        mTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                gotoFollowingLine();
-//            }
-//        });
-//
-//        bOption1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                gotoFollowingLine(1);
-//            }
-//        });
-//
-//        bOption2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                gotoFollowingLine(2);
-//            }
-//        });
-//
-//        bOption3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                gotoFollowingLine(3);
-//            }
-//        });
+        try {
+            Log.i(TAG, getFilesDir().getAbsolutePath());
+            // InputStream stream = getApplicationContext().openFileInput(storyFilename); // getResources().openRawResource(getResources().getIdentifier("raw/" + storyFilename, null, this.getPackageName()));
+            // storyJSON = new JSONObject(Objects.requireNonNull(loadJSONFromStream(stream)));
+            // lastChapter = storyJSON.getJSONArray("chapters").length() - 1;
+            // lastScene = Objects.requireNonNull(getCurrentChapter()).getJSONArray("scenes").length() - 1;
+            // stream.close();
+            // updateSceneLines();
+            // showNarration(getCurrentLine());
+        }
+        catch(Exception e) {
+            Log.e(TAG, e.toString());
+            finish();
+            // TODO startActivity(...);
+        }
+
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoFollowingLine();
+            }
+        });
+
+        bOption1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoFollowingLine(1);
+            }
+        });
+
+        bOption2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoFollowingLine(2);
+            }
+        });
+
+        bOption3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoFollowingLine(3);
+            }
+        });
     }
-    /*
+
     private void updateSceneLines() throws JSONException {
         currentSceneLines = Objects.requireNonNull(getCurrentScene()).getString("text").split(LINE_SPLIT_REGEX);
         lastLine = currentSceneLines.length - 1;
@@ -130,7 +132,7 @@ public class SceneActivity extends AppCompatActivity {
         return json;
     }
 
-    Returns the information on the current scene from the story
+    // Returns the information on the current scene from the story
     @Nullable
     protected JSONObject getCurrentScene() {
         try { // TODO Use (de)serializable class and storyJSON = ex_storyJSON.getClass(...)
@@ -144,7 +146,7 @@ public class SceneActivity extends AppCompatActivity {
         }
     }
 
-    Returns the information on the current chapter from the story
+    // Returns the information on the current chapter from the story
     @Nullable
     protected JSONObject getCurrentChapter() {
         try { // TODO Use (de)serializable class and storyJSON = ex_storyJSON.getClass(...)
@@ -156,12 +158,12 @@ public class SceneActivity extends AppCompatActivity {
         }
     }
 
-    Returns the text of the current line
+    // Returns the text of the current line
     protected String getCurrentLine() {
         return currentSceneLines[currentLine];
     }
 
-    Transitions to the following line from the story
+    // Transitions to the following line from the story
     protected void gotoFollowingLine() {
         // TODO Save game
         try { // TODO Use (de)serializable class and storyJSON = ex_storyJSON.getClass(...)
@@ -207,7 +209,7 @@ public class SceneActivity extends AppCompatActivity {
         }
     }
 
-    Transitions to the following line from the story after a choice
+    // Transitions to the following line from the story after a choice
     protected void gotoFollowingLine(int choice_option) {
         // TODO Save game
         JSONObject scene;
@@ -254,7 +256,7 @@ public class SceneActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    Presents a single line of narration
+    // Presents a single line of narration
     protected void showNarration(String text) {
         mTextView.setText(text);
 
@@ -265,9 +267,8 @@ public class SceneActivity extends AppCompatActivity {
             bOption3.setVisibility(View.GONE);
         }
     }
-    */
-/*
-    Presents a choice of options
+
+    // Presents a choice of options
     protected void showChoice(
         String option_1,
         String option_2,
@@ -293,5 +294,5 @@ public class SceneActivity extends AppCompatActivity {
         this.currentLine++;
     }
 
- */
+
 }

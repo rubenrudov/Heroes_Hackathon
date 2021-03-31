@@ -80,15 +80,18 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHold
                     if (title.getText().toString().contains("קאז'ק")) {
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("story", "kazik");
+                        intent.putExtra("survivor", "רותם שמחה (קאז'ק)");
                     }
                     else if (title.getText().toString().contains("חיים")){
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("story", "haim");
+                        intent.putExtra("survivor", "kazik");
                     }
 
                     else {
                         intent = new Intent(StoriesAdapter.this.context, SceneActivity.class);
                         intent.putExtra("story", "eva");
+                        intent.putExtra("survivor", "kazik");
                     }
                     StoriesAdapter.this.context.startActivity(intent);
                 }
