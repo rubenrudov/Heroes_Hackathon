@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -25,6 +26,7 @@ public class EndingStoryActivity extends AppCompatActivity {
 
         final TextView scrolledSurvivorName = (TextView) findViewById(R.id.survivor_name);
         final TextView staticSurvivorName = (TextView) findViewById(R.id.survivor_name_static);
+        final Button restartStory = (Button) findViewById(R.id.restart_story_from_ending);
 
         Intent intent = getIntent();
         final String storyFilename = intent.getStringExtra("story");

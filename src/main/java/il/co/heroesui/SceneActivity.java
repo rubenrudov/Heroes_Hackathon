@@ -41,6 +41,7 @@ public class SceneActivity extends AppCompatActivity {
     private String[] currentSceneLines;
     private Boolean inScene;
     private String storyFilename;
+    private String survivorName;
     private SharedPreferences pref;
 
     @Override
@@ -56,21 +57,21 @@ public class SceneActivity extends AppCompatActivity {
         bOption3 = (Button) findViewById(R.id.choice_option_3);
         inScene = true;
 
+        /* Load intent */
+        Intent intent = getIntent();
+        mTextView.setText(survivorName);
+        Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
+        // TODO Load game
+        storyFilename = intent.getStringExtra("story");
         /* Load shared prefs */
         pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
         if (pref.getBoolean("completed", false)) {
             startEpilogue();
         }
-
-        /* Load intent */
-        Intent intent = getIntent();
-        mTextView.setText(intent.getExtras().getString("survivor"));
-        Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
-        // TODO Load game
         currentChapter = intent.getIntExtra("currentChapter", pref.getInt("currentChapter", 0));
         currentScene = intent.getIntExtra("currentScene", pref.getInt("currentScene", 0));
         currentLine = intent.getIntExtra("currentLine", 0);
-        storyFilename = intent.getStringExtra("story");
+
 
         try {
             Log.i(TAG, getFilesDir().getAbsolutePath());
@@ -268,6 +269,7 @@ public class SceneActivity extends AppCompatActivity {
         Intent intent = new Intent(SceneActivity.this, EndingStoryActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("story", storyFilename);
+        intent.putExtra("survivor", survivorName);
         startActivity(intent);
     }
 
