@@ -1,0 +1,69 @@
+package il.co.heroesui.handler;
+import android.content.Context;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import il.co.heroesui.R;
+import android.view.LayoutInflater;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import il.co.heroesui.models.Story;
+
+public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.ViewHolder> {
+
+    private Context context;
+    private ArrayList<Story> stories;
+
+    public StoriesAdapter(Context context, ArrayList<Story> stories) {
+        this.stories = stories;
+        this.context = context;
+        // TODO: Duplicate list for filtering feature
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        final View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false);
+
+        // On click listener for the view (Static for now)
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView title = view.findViewById(R.id.storyTitle);
+                if (title.getText().toString().contains("קאז'ק")) {
+                    Log.d("Ruby", "Kazik");
+                } else {
+                    Log.d("Ruby", "Other");
+                }
+            }
+        });
+
+        return new StoriesAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        Story story = this.stories.get(position);
+        viewHolder.title.setText(story.getTitle());
+        viewHolder.theme.setBackgroundResource(story.getResource());
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.stories.size();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
+        ImageView theme;
+
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.title = itemView.findViewById(R.id.storyTitle);
+            this.theme = itemView.findViewById(R.id.theme);
+        }
+    }
+}
