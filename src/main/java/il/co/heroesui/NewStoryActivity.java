@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class NewStoryActivity extends AppCompatActivity {
     FirebaseDatabase database;
@@ -26,8 +27,9 @@ public class NewStoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_story);
-        database = FirebaseDatabase.getInstance();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
+        database = FirebaseDatabase.getInstance();
         storyTitle = findViewById(R.id.storyTitleEditText);
         chap1 = findViewById(R.id.chapterTitle);
         chap2 = findViewById(R.id.chapter2Title);
