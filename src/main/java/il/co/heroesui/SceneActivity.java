@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+
 public class SceneActivity extends AppCompatActivity {
     public static final String TAG = "SCENE_VIEW";
     public static final String LINE_SPLIT_REGEX = "(\\s*\\r?\\n\\s*)+";  // Split by newline and strip
@@ -134,7 +135,7 @@ public class SceneActivity extends AppCompatActivity {
     protected JSONObject getCurrentScene() {
         try { // TODO Use (de)serializable class and storyJSON = ex_storyJSON.getClass(...)
             JSONObject chapter = getCurrentChapter();
-            assert chapter != null;
+            assert chapter != null;  // TODO Change from assert to something more descriptive than crashing
             JSONArray scenes = chapter.getJSONArray("scenes");
             return scenes.getJSONObject(currentScene);
         } catch (JSONException e) {
@@ -170,7 +171,7 @@ public class SceneActivity extends AppCompatActivity {
                 if (inScene) {
                     // Move to choice
                     scene = getCurrentScene();
-                    assert scene != null;
+                    assert scene != null;  // TODO Change assert into something more descriptive than crashing
                     firstOption = scene.getJSONArray("choices").optString(0, "");
                     inScene = false;
                     if (firstOption.isEmpty()) {
@@ -178,19 +179,19 @@ public class SceneActivity extends AppCompatActivity {
                         gotoFollowingLine();
                     } else {
                         showChoice(
-                                firstOption,
-                                scene.getJSONArray("choices").optString(1, ""),
-                                scene.getJSONArray("choices").optString(2, "")
+                            firstOption,
+                            scene.getJSONArray("choices").optString(1, ""),
+                            scene.getJSONArray("choices").optString(2, "")
                         );
                     }
                 } else {
                     if (lastScene <= currentScene) {
                         if (lastChapter <= currentChapter) {
-                            // Move to next chapter
-                            startNextChapter();
-                        } else {
                             // Move to epilogue
                             finish();  // TODO
+                        } else {
+                            // Move to next chapter
+                            startNextChapter();
                         }
                     } else {
                         // Move to next scene
@@ -249,8 +250,8 @@ public class SceneActivity extends AppCompatActivity {
         Intent intent = new Intent(SceneActivity.this, ChapterActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("currentChapter", ++currentChapter);
-        startActivity(intent);
         inScene = true;
+        startActivity(intent);
     }
 
     Presents a single line of narration
@@ -268,9 +269,9 @@ public class SceneActivity extends AppCompatActivity {
 /*
     Presents a choice of options
     protected void showChoice(
-            String option_1,
-            String option_2,
-            String option_3
+        String option_1,
+        String option_2,
+        String option_3
     ) {
         mTextView.setVisibility(View.GONE);
         if (!option_1.isEmpty()) {
