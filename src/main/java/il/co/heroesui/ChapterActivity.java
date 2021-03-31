@@ -43,7 +43,7 @@ public class ChapterActivity extends AppCompatActivity {
         bStartChapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("currentChapter", currentChapter);
                 // TODO Save progress to shared preferences
@@ -57,7 +57,7 @@ public class ChapterActivity extends AppCompatActivity {
         bRestartStory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("currentChapter", 0);
                 scene_intent.putExtra("currentScene", 0);
@@ -70,7 +70,7 @@ public class ChapterActivity extends AppCompatActivity {
         bRestartChapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scene_intent = new Intent(ChapterActivity.this, MainActivity.class);
+                Intent scene_intent = new Intent(ChapterActivity.this, SceneActivity.class);
                 // TODO intent.setFlags(...)
                 scene_intent.putExtra("currentChapter", currentChapter - 1);
                 scene_intent.putExtra("currentScene", 0);
