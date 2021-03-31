@@ -256,6 +256,12 @@ public class SceneActivity extends AppCompatActivity {
 
     // Presents a single line of narration
     protected void showNarration(String text) {
+        if (text.startsWith("~")) {
+            text = text.replaceFirst("~\\s*", "");
+            mTextView.setTextAppearance(R.style.TextAppearance_AppCompat_Headline);
+        } else {
+            mTextView.setTextAppearance(R.style.TextAppearance_AppCompat_Body1);
+        }
         mTextView.setText(text);
 
         if (!(mTextView.getVisibility() == View.VISIBLE && bOption1.getVisibility() == View.GONE)) {
