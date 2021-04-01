@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">HeroesEdut</string>
-    <string name="main_text_placeholder_text">Main Text</string>
+    <string name="app_name">עדות של גיבור</string>
+    <string name="main_text_placeholder_text">דוגמא לטקסט לורום איפסום סיט כום אסט דולור</string>
     <string name="choice_option_placeholder_text">Choice Option</string>
     <string name="chapter_title_placeholder_text">Chapter Title</string>
     <string name="start_button_placeholder_text">Play</string>
-    <string name="start_over_text">Start Over</string>
+    <string name="start_over_text">חזור לתחילת הסיפור</string>
     <string name="restart_chapter_text">Restart Chapter</string>
     <!--
     This string is used for square devices and overridden by hello_world in
@@ -16,5 +16,7 @@
     <string name="survivor_name_placeholder_text">שם השורד</string>
     <string name="short_survivor_info_placeholder_text">מידע קצר על השורד</string>
     <string name="survivor_epilogue_image_content_description">תמונת הגיבור</string>
+    <string name="text_for_choosing">טקסט לפני בחירה</string>
+    <string name="title_scene">Title</string>
 
 </resources>

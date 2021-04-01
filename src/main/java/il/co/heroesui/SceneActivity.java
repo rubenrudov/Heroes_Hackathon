@@ -2,6 +2,8 @@ package il.co.heroesui;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,6 +43,7 @@ public class SceneActivity extends AppCompatActivity {
     private String[] currentSceneLines;
     private Boolean inScene;
     private String storyFilename;
+    private String survivorName;
     private SharedPreferences pref;
 
     @Override
@@ -54,24 +57,25 @@ public class SceneActivity extends AppCompatActivity {
         bOption1 = (Button) findViewById(R.id.choice_option_1);
         bOption2 = (Button) findViewById(R.id.choice_option_2);
         bOption3 = (Button) findViewById(R.id.choice_option_3);
+        ConstraintLayout layoutSceneContainer = (ConstraintLayout) findViewById(R.id.scene_container);
         inScene = true;
+        JSONObject chapter;
 
+        /* Load intent */
+        Intent intent = getIntent();
+        survivorName = intent.getStringExtra("survivor");
+        // TODO Load game
+        storyFilename = intent.getStringExtra("story");
         /* Load shared prefs */
         pref = getApplicationContext().getSharedPreferences(storyFilename, 0);
         if (pref.getBoolean("completed", false)) {
             startEpilogue();
         }
-
-        /* Load intent */
-        Intent intent = getIntent();
-        mTextView.setText(intent.getExtras().getString("survivor"));
-        Log.d("Story", Objects.requireNonNull(intent.getExtras().getString("story")));
-        // TODO Load game
         currentChapter = intent.getIntExtra("currentChapter", pref.getInt("currentChapter", 0));
         currentScene = intent.getIntExtra("currentScene", pref.getInt("currentScene", 0));
         currentLine = intent.getIntExtra("currentLine", 0);
-        storyFilename = intent.getStringExtra("story");
 
+        mTextView.setText(survivorName);
         try {
             Log.i(TAG, getFilesDir().getAbsolutePath());
             // TODO InputStream stream = getApplicationContext().openFileInput(storyFilename);
@@ -81,6 +85,8 @@ public class SceneActivity extends AppCompatActivity {
             lastScene = Objects.requireNonNull(getCurrentChapter()).getJSONArray("scenes").length() - 1;
             stream.close();
             updateSceneLines();
+            chapter = getCurrentChapter();
+            layoutSceneContainer.setBackground(ContextCompat.getDrawable(getApplicationContext(), getResources().getIdentifier("drawable/" + chapter.getString("background"), null, getPackageName())));
             showNarration(getCurrentLine());
         }
         catch(Exception e) {
@@ -268,16 +274,19 @@ public class SceneActivity extends AppCompatActivity {
         Intent intent = new Intent(SceneActivity.this, EndingStoryActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("story", storyFilename);
+        intent.putExtra("survivor", survivorName);
         startActivity(intent);
     }
 
     // Presents a single line of narration
     protected void showNarration(String text) {
         if (text.startsWith("~")) {
+            // Show quote
             text = text.replaceFirst("~\\s*", "");
-            mTextView.setTextAppearance(R.style.TextAppearance_AppCompat_Headline);
+            mTextView.setTextAppearance(R.style.Quote);
         } else {
-            mTextView.setTextAppearance(R.style.TextAppearance_AppCompat_Body1);
+            // Show normal narration
+            mTextView.setTextAppearance(R.style.Narration);
         }
         mTextView.setText(text);
 
@@ -297,16 +306,16 @@ public class SceneActivity extends AppCompatActivity {
     ) {
         mTextView.setVisibility(View.GONE);
         if (!option_1.isEmpty()) {
-            bOption1.setText(option_1);
             bOption1.setVisibility(View.VISIBLE);
+            bOption1.setText(option_1);
         }
         if (!option_2.isEmpty()) {
-            bOption2.setText(option_2);
             bOption2.setVisibility(View.VISIBLE);
+            bOption2.setText(option_2);
         }
         if (!option_3.isEmpty()) {
-            bOption3.setText(option_3);
             bOption3.setVisibility(View.VISIBLE);
+            bOption3.setText(option_3);
         }
     }
 

@@ -13,35 +13,18 @@
         android:layout_height="wrap_content"
         android:text="@string/survivor_name_placeholder_text"
         android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/full_survivor_info_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/full_survivor_info_link_text"
-                android:textAlignment="center" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
 
             <ImageView
                 android:id="@+id/survivor_epilogue_image"
@@ -49,21 +32,68 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="58dp"
                 android:contentDescription="@string/survivor_epilogue_image_content_description"
-                app:srcCompat="@drawable/ourlogo" />
+                app:srcCompat="@drawable/ourlogo"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:id="@+id/survivor_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/survivor_name_placeholder_text"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22dp"
+                />
+
+            <TextView
+                android:id="@+id/full_survivor_info_link"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:text="@string/full_survivor_info_link_text"
+                android:textSize="18dp"
+                android:textColor="#8888ff"
+                android:textAlignment="center"
+                android:background="@drawable/one_line_edit_text"
+
+                />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/short_survivor_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/short_survivor_info_placeholder_text" />
+                android:text="@string/short_survivor_info_placeholder_text"
+                android:textSize="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:paddingTop="5dp"
+                android:lineSpacingMultiplier="1.5"
+                />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/restart_story_from_ending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שחק שוב"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

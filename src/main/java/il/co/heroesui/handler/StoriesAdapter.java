@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import il.co.heroesui.ChapterActivity;
 import il.co.heroesui.R;
 import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
