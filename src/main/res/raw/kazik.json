@@ -4,7 +4,7 @@
   "chapters": [
     {
       "title": "ילדות",
-      "title_image": "kazik/ch1.jpg",
+      "title_image": "ch1",
       "music": "music/ATallShip.mp3",
       "background": "bg11",
       "scenes": [
@@ -36,7 +36,7 @@
     },
     {
       "title": "היום הראשון למלחמה והפלישה לפולין",
-      "title_image": "kazik/ch2.jpg",
+      "title_image": "ch2",
       "music": "music/BeforeDawn.mp3",
       "background": "bg11",
       "scenes": [
@@ -63,7 +63,7 @@
     },
     {
       "title": "הפצצת וורשה",
-      "title_image": "kazik/ch3.jpg",
+      "title_image": "ch3",
       "music": "music/HorrorDrone1.mp3",
       "background": "bg11",
       "scenes": [
@@ -81,7 +81,7 @@
     },
     {
       "title": "אחרי ההפצצה",
-      "title_image": "kazik/ch4.jpg",
+      "title_image": "ch4",
       "music": "music/HorrorMusic.mp3",
       "background": "history_8",
       "scenes": [
@@ -107,7 +107,7 @@
     },
     {
         "title": "החזרה לוורשה",
-        "title_image": "kazik/ch5.jpg",
+        "title_image": "ch5",
         "music": "music/Antarctica.mp3",
         "background": "history_8",
         "scenes": [
@@ -145,7 +145,7 @@
           },
           {
             "title": "חיי השגרה בארגון יהודי לוחם",
-            "title_image": "kazik/ch6.jpg",
+            "title_image": "ch6",
             "music": "music/Johanna.mp3",
             "background": "history_8",
             "scenes": [
@@ -158,7 +158,7 @@
           },
           {
             "title": "ההכנות למרד",
-            "title_image": "kazik/ch7.jpg",
+            "title_image": "ch7",
             "music": "music/Johanna.mp3",
             "background": "history_8",
             "scenes": [
@@ -189,7 +189,7 @@
           },
           {
             "title": "המרד",
-            "title_image": "kazik/ch8.jpg",
+            "title_image": "ch8",
             "music": "music/OceanFloor.mp3",
             "background": "history_8",
             "scenes": [
@@ -220,7 +220,7 @@
           },
           {
             "title": "חיסול הגטו ע\"י הגרמנים",
-            "title_image": "kazik/ch9.jpg",
+            "title_image": "ch9",
             "music": "music/PensivePiano.mp3",
             "background": "history_8",
             "scenes": [
