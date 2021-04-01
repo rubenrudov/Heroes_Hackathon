@@ -5,7 +5,7 @@
     {
       "title": "ילדות",
       "title_image": "ch1",
-      "music": "music/ATallShip.mp3",
+      "music": "atallship",
       "background": "bg11",
       "scenes": [
         {
@@ -37,7 +37,7 @@
     {
       "title": "היום הראשון למלחמה והפלישה לפולין",
       "title_image": "ch2",
-      "music": "music/BeforeDawn.mp3",
+      "music": "beforedawn",
       "background": "bg11",
       "scenes": [
         {
@@ -64,7 +64,7 @@
     {
       "title": "הפצצת וורשה",
       "title_image": "ch3",
-      "music": "music/HorrorDrone1.mp3",
+      "music": "horrordrone",
       "background": "bg11",
       "scenes": [
         {
@@ -82,7 +82,7 @@
     {
       "title": "אחרי ההפצצה",
       "title_image": "ch4",
-      "music": "music/HorrorMusic.mp3",
+      "music": "horrormusic",
       "background": "history_8",
       "scenes": [
         {
@@ -108,7 +108,7 @@
     {
         "title": "החזרה לוורשה",
         "title_image": "ch5",
-        "music": "music/Antarctica.mp3",
+        "music": "antarctica",
         "background": "history_8",
         "scenes": [
           {
@@ -146,7 +146,7 @@
           {
             "title": "חיי השגרה בארגון יהודי לוחם",
             "title_image": "ch6",
-            "music": "music/Johanna.mp3",
+            "music": "johanna",
             "background": "history_8",
             "scenes": [
               {
@@ -159,7 +159,7 @@
           {
             "title": "ההכנות למרד",
             "title_image": "ch7",
-            "music": "music/Johanna.mp3",
+            "music": "johanna",
             "background": "history_8",
             "scenes": [
               {
@@ -190,7 +190,7 @@
           {
             "title": "המרד",
             "title_image": "ch8",
-            "music": "music/OceanFloor.mp3",
+            "music": "oceanfloor",
             "background": "history_8",
             "scenes": [
               {
@@ -221,7 +221,7 @@
           {
             "title": "חיסול הגטו ע\"י הגרמנים",
             "title_image": "ch9",
-            "music": "music/PensivePiano.mp3",
+            "music": "pensivepiano",
             "background": "history_8",
             "scenes": [
               {

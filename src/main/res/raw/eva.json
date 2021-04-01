@@ -5,7 +5,7 @@
     {
       "title": "החיים בגטו קרקוב",
       "title_image": "ch1",
-      "music": "music/BeforeDawn.mp3",
+      "music": "beforedawn",
       "background": "krakov",
       "scenes": [
         {
@@ -37,7 +37,7 @@
     {
       "title": "חיסול הגטו",
       "title_image": "ch2",
-      "music": "music/AlienSunset.mp3",
+      "music": "aliensunset",
       "background": "history_8",
       "scenes": [
         {
@@ -77,7 +77,7 @@
     {
       "title": "מחנה פלאשוב",
       "title_image": "ch3",
-      "music": "music/ColdMorning.mp3",
+      "music": "coldmorning",
       "background": "bg8",
       "scenes": [
         {
@@ -103,7 +103,7 @@
     {
       "title": "רשימת שינדלר",
       "title_image": "ch4",
-      "music": "music/Metaphor.mp3",
+      "music": "metaphor",
       "background": "bg9",
       "scenes": [
         {
@@ -134,7 +134,7 @@
     {
       "title": "סוף המלחמה",
       "title_image": "ch5",
-      "music": "music/12Mornings.mp3",
+      "music": "mornings",
       "background": "bg7",
       "scenes": [
         {
@@ -168,7 +168,7 @@
     {
       "title": "השומר הצעיר",
       "title_image": "ch6",
-      "music": "music/AcrylicOnCanvas.mp3",
+      "music": "acrilic",
       "background": "bg10",
       "scenes": [
         {

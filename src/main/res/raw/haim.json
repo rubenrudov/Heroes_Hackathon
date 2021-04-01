@@ -6,7 +6,7 @@
       "title": "שריפת בית הכנסת",
       "title_image": "ch1",
       "background": "bg4",
-      "music": "music/AlienSunset.mp3",
+      "music": "aliensunset",
       "scenes": [
         {
           "text": "ריח עשן נישא מן החלון ומפריע לך בלימודיך. אתה מרים את מבטך ורואה כי להבות מלחכות את בית הכנסת.\nצעקות נשמעות ועוד לפני שאתה מבין מה קורה, אביך קורה לך לבוא לעזור. \"חייבים להציל את הספרים!\" הוא זועק.\n\"אבא, חכה!\" אתה קורא אך הוא כבר יצא בבהלה, זקנו הארוך מתנופף ברוח. \nאתה ממהר לצאת אחריו לכיוון בית הכנסת, עשן שחור וכבד ממלא את הרחוב. \nאתה רץ בעיוורון ולפתע נתקל ביוסי, חברך הטוב מהלימודים. הוא אוחז בכתפיך בחוזקה ומנסה לעצור אותך.\n\"חיים! עצור! אתה לא יכול להתקרב לשם! כל הבניין הולך להתמוטט!\"\n\"אני חייב ללכת לבית הכנסת!\" אתה מתעקש. \"אבי הלך לשם – \"\n",
@@ -31,7 +31,7 @@
     {
       "title": "ירי",
       "title_image": "ch2",
-      "music": "music/Atlantis.mp3",
+      "music": "atlantis",
       "background": "history_8",
       "scenes": [
         {
@@ -60,7 +60,7 @@
     {
       "title": "בדרך לקראקוב",
       "title_image": "ch3",
-      "music": "music/BeforeDawn.mp3",
+      "music": "beforedawn",
       "background": "img159326",
       "scenes": [
         {
@@ -89,7 +89,7 @@
     {
       "title": "בור המתים",
       "title_image": "ch4",
-      "music": "music/Horror13.mp3",
+      "music": "horror",
       "background": "black",
       "scenes": [
         {
@@ -118,7 +118,7 @@
     {
       "title": "מחנה עבודה",
       "title_image": "ch5",
-      "music": "music/ATallShip.mp3",
+      "music": "atallship",
       "background": "bg2",
       "scenes": [
         {
@@ -142,7 +142,7 @@
     {
       "title": "מפרקים את המחנה",
       "title_image": "ch6",
-      "music": "music/Antarctica.mp3",
+      "music": "antarctica",
       "background": "bg5",
       "scenes": [
         {
@@ -167,7 +167,7 @@
     {
       "title": "רכבת המוות",
       "title_image": "ch7",
-      "music": "music/Metaphor.mp3",
+      "music": "metaphor",
       "background": "train",
       "scenes": [
         {
@@ -196,7 +196,7 @@
     {
       "title": "הפרטיזנים",
       "title_image": "ch8",
-      "music": "music/AcrylicOnCanvas.mp3",
+      "music": "acrilic",
       "background": "img159326",
       "scenes": [
         {

@@ -3,8 +3,11 @@ package il.co.heroesui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,29 +16,50 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.Objects;
+import java.util.Random;
 
 import static il.co.heroesui.utils.JSONUtils.loadJSONFromStream;
 
 public class EndingStoryActivity extends AppCompatActivity {
     String TAG = "STORY_ENDING";
 
+
+
+    FloatingActionButton settings;
+    // Music playing properties
+    MediaPlayer backgroundMusic;
+    AudioManager audioManager;
+    boolean isntMuted = true; // The app would launch the music player as it launches.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ending_story);
 
+        // Components setting
         final TextView scrolledSurvivorName = (TextView) findViewById(R.id.survivor_name);
         final TextView staticSurvivorName = (TextView) findViewById(R.id.survivor_name_static);
         final Button restartStory = (Button) findViewById(R.id.restart_story_from_ending);
         final ImageView imgSurvivor = (ImageView) findViewById(R.id.survivor_epilogue_image);
         final TextView shortInfo = (TextView) findViewById(R.id.short_survivor_info);
         final TextView linkView = (TextView) findViewById(R.id.full_survivor_info_link);
+        settings = findViewById(R.id.settings);
+        // Background music properties
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        assert audioManager != null;
+        final int[] max = {audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)};
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, max[0] / 4, 0);
+        backgroundMusic = MediaPlayer.create(this, RandomMusic());
+        backgroundMusic.start();
 
+        // Intent setting
         Intent intent = getIntent();
         final String storyFilename = intent.getStringExtra("story");
         final String survivor = intent.getStringExtra("survivor");
@@ -99,5 +123,50 @@ public class EndingStoryActivity extends AppCompatActivity {
                 startActivity(scene_intent);
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Write a settings activity -> advanced...
+                // Settings activity / Muter for the music, we'll discuss about it later...
+                // startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                max[0] = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                if (isntMuted) {
+                    backgroundMusic.setVolume(0, 0);
+                    settings.setImageResource(R.drawable.ic_volume_off);
+                    isntMuted = false;
+                }
+
+                else
+                {
+                    backgroundMusic.setVolume(1, 1);
+                    settings.setImageResource(R.drawable.ic_volume);
+                    isntMuted = true;
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (backgroundMusic != null) {
+            backgroundMusic.stop();
+            backgroundMusic.release();
+        }
+    }
+
+    private int RandomMusic() {
+        int[] songs = {
+                R.raw.pensivepiano,
+                R.raw.middlearth,
+                R.raw.atlantis,
+                R.raw.piano_music,
+                R.raw.mornings
+        };
+
+        int index = (int) (Math.random() * (songs.length - 1));
+
+        return songs[index];
     }
 }

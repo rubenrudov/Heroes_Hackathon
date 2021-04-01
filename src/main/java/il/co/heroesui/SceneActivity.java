@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -45,6 +46,7 @@ public class SceneActivity extends AppCompatActivity {
     private String storyFilename;
     private String survivorName;
     private SharedPreferences pref;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,42 +87,65 @@ public class SceneActivity extends AppCompatActivity {
             lastScene = Objects.requireNonNull(getCurrentChapter()).getJSONArray("scenes").length() - 1;
             stream.close();
             updateSceneLines();
+
+            mTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoFollowingLine();
+                }
+            });
+
+            bOption1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoFollowingLine(1);
+                }
+            });
+
+            bOption2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoFollowingLine(2);
+                }
+            });
+
+            bOption3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoFollowingLine(3);
+                }
+            });
+
+            showNarration(getCurrentLine());
+
             chapter = getCurrentChapter();
             layoutSceneContainer.setBackground(ContextCompat.getDrawable(getApplicationContext(), getResources().getIdentifier("drawable/" + chapter.getString("background"), null, getPackageName())));
-            showNarration(getCurrentLine());
+
+            // Media is lowest priority
+            String musicFilepath = getCurrentChapter().optString("music", "");
+            if (!musicFilepath.isEmpty()) {
+                int musicResource = getResources().getIdentifier("raw/" + musicFilepath, null, this.getPackageName());
+                if (musicResource != 0) {
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), musicResource);
+                    mediaPlayer.start();
+                } else {
+                    Log.e(TAG, "Media not found at " + musicFilepath);
+                }
+            }
         }
         catch(Exception e) {
             Log.e(TAG, e.toString());
             finish();
         }
+    }
 
-        mTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoFollowingLine();
-            }
-        });
-
-        bOption1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoFollowingLine(1);
-            }
-        });
-
-        bOption2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoFollowingLine(2);
-            }
-        });
-
-        bOption3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoFollowingLine(3);
-            }
-        });
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
     }
 
     private void updateSceneLines() throws JSONException {
