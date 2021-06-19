@@ -1,41 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/box_inset_layout_padding"
-    tools:context=".SceneActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/scene_container">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/main_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
-        app:boxedEdges="none">
+        android:layout_height="wrap_content"
+        android:minHeight="245dp"
+        android:text="@string/main_text_placeholder_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.65"
+        android:padding="12dp"
+        android:layout_margin="20dp"
+        android:maxLines="10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Narration"
+        />
 
-        <TextView
-            android:id="@+id/main_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_text_placeholder" />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.45"
+        >
         <Button
-            android:id="@+id/choice_option_1"
-            android:layout_width="wrap_content"
+            android:id="@+id/choice_option_3"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="@string/choice_option_placeholder_text" />
+            android:text="אופציה 3"
+            android:padding="20dp"
+            android:layout_marginVertical="20dp"
+            style="@style/Choice" />
 
         <Button
             android:id="@+id/choice_option_2"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text="אופצייה 2"
+            android:padding="20dp"
+            android:layout_marginVertical="20dp"
+            style="@style/Choice" />
 
         <Button
-            android:id="@+id/choice_option_3"
-            android:layout_width="wrap_content"
+            android:id="@+id/choice_option_1"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:width="300dp"
+            android:text="אופצייה 1"
+            android:padding="20dp"
+            android:layout_marginVertical="20dp"
+            style="@style/Choice" />
+    </LinearLayout>
 
-    </FrameLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

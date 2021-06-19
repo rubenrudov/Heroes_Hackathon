@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewStoryActivity"></activity>
+        <activity android:name=".EndingStoryActivity" />
+        <activity android:name=".ChapterActivity" />
+        <activity android:name=".SceneActivity" />
+        <activity android:name=".SelectGameActivity" />
+        <activity android:name=".NewStoryActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
